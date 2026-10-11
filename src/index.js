@@ -1,6 +1,17 @@
 import "./styles.css";
 
-const body = document.querySelector("body");
-body.textContent = "Hello World";
+const yourFleet = document.getElementById("your-fleet");
+const enemyWaters = document.getElementById("enemy-waters");
 
-console.log("hello world");
+function createGrid(player) {
+    for (let i=0;i<10;i++) {
+        for (let j=0;j<10;j++) {
+            const cell = document.createElement("div");
+            cell.classList.add(`cell`);
+            cell.classList.add(`cell${i}${j}`);
+            player.appendChild(cell);
+        }
+    }
+}
+
+createGrid(yourFleet);
