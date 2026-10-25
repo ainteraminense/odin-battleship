@@ -8,4 +8,8 @@ export class Ship {
     hit() {
         return ++this.hits;
     }
+
+    checkIsSunk() {
+        return this.shipLength <= this.hits ? true : false;
+    }
 }
