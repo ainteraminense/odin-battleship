@@ -41,4 +41,18 @@ export class Gameboard {
       return false;
     }
   }
+
+  reportAllShipsHaveBeenSunk() {
+    const fleet = [];
+    for (let i = 0; i < this.gameboard.length; i++) {
+      const gameboardRow = this.gameboard[i];
+      for (let j = 0; j < gameboardRow.length; j++) {
+        if (gameboardRow[j] != null && typeof gameboardRow[j] === "object") {
+          if (gameboardRow[j].checkIsSunk()) continue;
+          fleet.push(gameboardRow[j]);
+        }
+      }
+    }
+    return fleet.length > 0 ? false : true;
+  }
 }
