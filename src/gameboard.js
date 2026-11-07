@@ -1,5 +1,3 @@
-import { Ship } from "./ship";
-
 export class Gameboard {
   constructor() {
     this.GRID_SIZE = 10;
@@ -13,7 +11,7 @@ export class Gameboard {
     }
   }
 
-  placeShip(ship, coordinateX, coordinateY, isVertical) {
+  placeShip(ship, coordinateX, coordinateY, isVertical = true) {
     if (isVertical) {
       for (let i = coordinateX; i < coordinateX + ship.shipLength; i++) {
         this.gameboard[i][coordinateY] = ship;

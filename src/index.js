@@ -1,17 +1,33 @@
 import "./styles.css";
+import { BattleShip } from "./battleShip.js";
 
 const yourFleet = document.getElementById("your-fleet");
 const enemyWaters = document.getElementById("enemy-waters");
+const GRID_SIZE = 10;
 
-function createGrid(player) {
-    for (let i=0;i<10;i++) {
-        for (let j=0;j<10;j++) {
-            const cell = document.createElement("div");
-            cell.classList.add(`cell`);
-            cell.classList.add(`cell${i}${j}`);
-            player.appendChild(cell);
-        }
+const game = new BattleShip();
+game.initiateGame();
+
+function createGrid(playerUI, humanPlayer) {
+  for (let i = 0; i < GRID_SIZE; i++) {
+    for (let j = 0; j < GRID_SIZE; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add(`cell`);
+
+      let cellData = game.playerBoard.gameboard[i][j];
+
+      if (
+        cellData != null && // equality operator checks `undefined` and `null`
+        typeof cellData === "object" &&
+        humanPlayer
+      ) {
+        cell.classList.add("marked-cell");
+      }
+
+      playerUI.appendChild(cell);
     }
+  }
 }
 
-createGrid(yourFleet);
+createGrid(yourFleet, true);
+createGrid(enemyWaters, false);
