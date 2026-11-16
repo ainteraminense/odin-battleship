@@ -14,17 +14,22 @@ function createGrid(playerUI, humanPlayer) {
       const cell = document.createElement("div");
       cell.classList.add(`cell`);
 
-      let cellData = game.playerBoard.gameboard[i][j];
-
-      if (
-        cellData != null && // equality operator checks `undefined` and `null`
-        typeof cellData === "object" &&
-        humanPlayer
-      ) {
-        cell.classList.add("marked-cell");
+      if (humanPlayer) {
+        let cellData = game.playerBoard.gameboard[i][j];
+        if (
+          cellData != null && // equality operator checks `undefined` and `null`
+          typeof cellData === "object"
+        ) {
+          cell.classList.add("marked-cell");
+        }
+        playerUI.appendChild(cell);
+      } else {
+        let cellData = game.enemyBoard.gameboard[i][j];
+        cell.addEventListener("click", () => {
+          console.log(cellData);
+        });
+        enemyWaters.appendChild(cell);
       }
-
-      playerUI.appendChild(cell);
     }
   }
 }
