@@ -7,6 +7,7 @@ export class Ship {
   }
 
   hit() {
+    console.log("Ship was hit");
     return ++this.hits;
   }
 

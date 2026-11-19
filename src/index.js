@@ -27,6 +27,9 @@ function createGrid(playerUI, humanPlayer) {
         let cellData = game.enemyBoard.gameboard[i][j];
         cell.addEventListener("click", () => {
           console.log(cellData);
+          game.takeTurn();
+          console.log(`The game is taking turns. Now is ${game.turn} turns`);
+          game.enemyAttack();
         });
         enemyWaters.appendChild(cell);
       }

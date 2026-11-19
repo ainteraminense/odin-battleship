@@ -5,6 +5,11 @@ export class BattleShip {
   constructor() {
     this.playerBoard = new Gameboard();
     this.enemyBoard = new Gameboard();
+    this.turns = Object.freeze({
+      PLAYER: "player",
+      ENEMY: "enemy",
+    });
+    this.turn = this.turns.PLAYER;
   }
   initiateGame() {
     const carrier = new Ship(5, "carrier");
@@ -72,5 +77,17 @@ export class BattleShip {
     this.enemyBoard.placeShip(player2destroyer3, 7, 9);
     this.enemyBoard.placeShip(player2destroyer4, 3, 2, false);
     this.enemyBoard.placeShip(player2destroyer5, 4, 2, false);
+  }
+
+  takeTurn() {
+    this.turn =
+      this.turn === this.turns.PLAYER ? this.turns.ENEMY : this.turns.PLAYER;
+  }
+
+  enemyAttack() {
+    const condirnateX = Math.floor(Math.random() * 10);
+    const condirnateY = Math.floor(Math.random() * 10);
+    console.log(`Enemy is attacking at X:${condirnateX} and Y:${condirnateY}`);
+    this.playerBoard.receiveAttack(condirnateX, condirnateY);
   }
 }
